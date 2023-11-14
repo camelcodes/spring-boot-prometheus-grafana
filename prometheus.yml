@@ -1,0 +1,14 @@
+global:
+  scrape_interval:     10s
+  evaluation_interval: 10s
+
+scrape_configs:
+  - job_name: 'spring-boot-app'
+    metrics_path: '/actuator/prometheus'
+    # Fetch metrics every 10 seconds
+    scrape_interval: 10s
+    static_configs:
+      - targets: ['host.docker.internal:10000']
+
+# We are using host.docker.internal to access the spring boot application from inside the docker container
+# in a real life scenario you will use the IP adress or domain name where the spring boot application is deployed
